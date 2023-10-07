@@ -1,6 +1,6 @@
 # Hangman
 
-It's the best hangman game of all time because I wrote it. Works on Linux and Mac. 
+It's the best hangman game of all time because I wrote it. Works on Linux & Mac. 
 It might work on powershell too, I'm not sure.
 
 # Compilation
