@@ -1,4 +1,4 @@
-CXX = g+ 
+CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17
 HEADERS = src/h
 CPP = src/cpp
