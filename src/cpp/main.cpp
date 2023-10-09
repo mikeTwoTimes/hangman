@@ -4,9 +4,21 @@
 #include "File_In.h"
 #include "Rand_Num.h"
 
+template<typename T>
+bool in_list(const T& char_list, const char input) {
+  bool found = false;
+
+  for (const char item : char_list) {
+    if (item == input) {
+      found = true;
+      break;
+    }
+  }
+
+  return found;
+}
+
 std::string get_word();
-bool in_string(const std::string& word, const char letter);
-bool in_vect(const std::vector<char>& list, const char letter);
 char get_guess(const std::string& correct, const std::vector<char>& wrong);
 char get_replay();
 void play();
@@ -37,32 +49,6 @@ std::string get_word() {
   return word;
 }
 
-bool in_string(const std::string& word, const char letter) {
-  bool found = false;
-
-  for (const char c : word) {
-    if (letter == c) {
-      found = true;
-      break;
-    }
-  }
-
-  return found;
-}
-
-bool in_vect(const std::vector<char>& list, const char letter) {
-  bool found = false;
-
-  for (const char item : list) {
-    if (letter == item) {
-      found = true;
-      break;
-    }
-  }
-
-  return found;
-}
-
 char get_guess(const std::string& correct, const std::vector<char>& wrong) {
   char guess = '0';
 
@@ -76,10 +62,10 @@ char get_guess(const std::string& correct, const std::vector<char>& wrong) {
       guess = std::toupper(guess);
     }
     
-    if (!std::isalpha(guess) || in_string(correct, guess) || in_vect(wrong, guess)) {
+    if (!std::isalpha(guess) || in_list(correct, guess) || in_list(wrong, guess)) {
       Display::wipe_line(); // Clears line if bad input
     }
-  } while (!std::isalpha(guess) || in_string(correct, guess) || in_vect(wrong, guess));
+  } while (!std::isalpha(guess) || in_list(correct, guess) || in_list(wrong, guess));
 
   return guess;
 }
