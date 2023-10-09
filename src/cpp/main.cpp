@@ -4,6 +4,11 @@
 #include "File_In.h"
 #include "Rand_Num.h"
 
+std::string get_word();
+char get_guess(const std::string& correct, const std::vector<char>& wrong);
+char get_replay();
+void play();
+
 template<typename T>
 bool in_list(const T& char_list, const char input) {
   bool found = false;
@@ -17,11 +22,6 @@ bool in_list(const T& char_list, const char input) {
 
   return found;
 }
-
-std::string get_word();
-char get_guess(const std::string& correct, const std::vector<char>& wrong);
-char get_replay();
-void play();
 
 int main() {
   const int screen_size = 16;
