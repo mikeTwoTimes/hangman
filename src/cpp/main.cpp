@@ -5,23 +5,13 @@
 #include "Rand_Num.h"
 
 std::string get_word();
+
+template<typename T>
+bool in_list(const T& char_list, const char input);
+
 char get_guess(const std::string& correct, const std::vector<char>& wrong);
 char get_replay();
 void play();
-
-template<typename T>
-bool in_list(const T& char_list, const char input) {
-  bool found = false;
-
-  for (const char item : char_list) {
-    if (item == input) {
-      found = true;
-      break;
-    }
-  }
-
-  return found;
-}
 
 int main() {
   const int screen_size = 16;
@@ -47,6 +37,20 @@ std::string get_word() {
   }
 
   return word;
+}
+
+template<typename T>
+bool in_list(const T& char_list, const char input) {
+  bool found = false;
+
+  for (const char item : char_list) {
+    if (item == input) {
+      found = true;
+      break;
+    }
+  }
+
+  return found;
 }
 
 char get_guess(const std::string& correct, const std::vector<char>& wrong) {
