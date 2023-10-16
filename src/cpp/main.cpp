@@ -6,8 +6,8 @@
 
 std::string get_word();
 
-template<typename T>
-bool in_list(const T& char_list, const char input);
+template<typename Char_List>
+bool in_list(const Char_List& list, const char input);
 
 char get_guess(const std::string& correct, const std::vector<char>& wrong);
 char get_replay();
@@ -39,11 +39,11 @@ std::string get_word() {
   return word;
 }
 
-template<typename T>
-bool in_list(const T& char_list, const char input) {
+template<typename Char_List>
+bool in_list(const Char_List& list, const char input) {
   bool found = false;
 
-  for (const char item : char_list) {
+  for (const char item : list) {
     if (item == input) {
       found = true;
       break;
