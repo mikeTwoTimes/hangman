@@ -4,21 +4,22 @@
 #include "File_In.h"
 #include "Random.h"
 
-std::string get_word();
+std::string get_word(File_In& fin);
 char get_guess(const std::string& correct, const std::vector<char>& wrong);
 char get_replay();
 
 template<typename Char_List>
 bool in_list(const Char_List& list, const char input);
 
-void play();
+void play(File_In& fin);
 
 int main() {
   const int screen_size = 17;
   char replay = 'y';
+  File_In fin("words.txt");
 
   while (replay == 'y') {
-    play();
+    play(fin);
     replay = get_replay();
 
     if (replay == 'y') {
@@ -27,14 +28,15 @@ int main() {
   }
 }
 
-std::string get_word() {
-  const int line = Random::get().Int(1, 682);
-  File_In fin("words.txt");
+std::string get_word(File_In& fin) {
+  const int line = Random::get().Int(1, 682); // Picks a random line from the file
   std::string word;
 
   for (int i = 0; i < line; i++) {
-    fin.stream() >> word;
+    fin.stream() >> word;  // Reads file until the line number
   }
+
+  fin.stream().seekg(0, std::ios::beg); // Resets stream position to beginning of file
 
   return word;
 }
@@ -94,9 +96,9 @@ bool in_list(const Char_List& list, const char input) {
   return found;
 }
 
-void play() {
+void play(File_In& fin) {
   const int screen_size = 15;
-  Hangman game(get_word());
+  Hangman game(get_word(fin));
 
   Display::print_state(game);
 
