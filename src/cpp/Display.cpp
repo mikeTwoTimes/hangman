@@ -1,5 +1,68 @@
 #include "Display.h"
 
+const char* Drawing::gallows = "____\n"
+                               "|/  |\n"
+                               "|\n"
+                               "|\n"
+                               "|\n"
+                               "|\n"
+                               "|\n"
+                               "|_____";
+
+const char* Drawing::head = "____\n"
+      	      	            "|/  |\n"
+      	      	            "|  (_)\n"
+                            "|\n"
+                            "|\n"
+                            "|\n"
+                            "|\n"
+                            "|_____";
+
+const char* Drawing::body = "____\n"
+                            "|/  |\n"
+                            "|  (_)\n"
+                            "|   |\n"
+                            "|   |\n"
+                            "|\n"
+                            "|\n"
+                            "|_____";
+
+const char* Drawing::left_arm = "____\n"
+                                "|/  |\n"
+                                "|  (_)\n"
+                                "|  \\|\n"
+                                "|   |\n"
+                                "|\n"
+                                "|\n"
+                                "|_____";
+
+const char* Drawing::right_arm = "____\n"
+                                 "|/  |\n"
+                                 "|  (_)\n"
+                                 "|  \\|/\n"
+                                 "|   |\n"
+                                 "|\n"
+                                 "|\n"
+                                 "|_____";
+
+const char* Drawing::left_leg = "____\n"
+                                "|/  |\n"
+                                "|  (_)\n"
+                                "|  \\|/\n"
+                                "|   |\n"
+                                "|  /\n"
+                                "|\n"
+                                "|_____";
+
+const char* Drawing::right_leg = "____\n"
+                                 "|/  |\n"
+			         "|  (_)\n"
+			         "|  \\|/\n"
+                                 "|   |\n"
+                                 "|  / \\\n"
+                                 "|\n"
+                                 "|_____";
+
 void Display::wipe_line(const int line_count) {
   std::cout << "\r"; // Move cursor to the start of current line
 
