@@ -28,7 +28,7 @@ int main() {
 }
 
 std::string get_word() {
-  const int line = Random::get().Int(1, 849);
+  const int line = Random::get().Int(1, 682);
   File_In fin("words.txt");
   std::string word;
 
