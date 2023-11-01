@@ -3,6 +3,16 @@
 #include <iostream>
 #include "Hangman.h"
 
+namespace Drawing {
+  extern const char* gallows;
+  extern const char* head;
+  extern const char* body;
+  extern const char* left_arm;
+  extern const char* right_arm;
+  extern const char* left_leg;
+  extern const char* right_leg;
+}
+
 namespace Display {
   void wipe_line(const int line_count);
   void wipe_input();
@@ -13,71 +23,4 @@ namespace Display {
 
   void loss(const std::string& answer);
   void win();
-}
-
-// ASCII art from: http://www.fssnip.net/mO/title/Hangman
-
-namespace Drawing {
-  const std::string gallows = "____\n"
-                              "|/  |\n"
-                              "|\n"
-                              "|\n"
-                              "|\n"
-                              "|\n"
-                              "|\n"
-                              "|_____";
-
-  const std::string head = "____\n"
-      	      	      	   "|/  |\n"
-      	      	      	   "|  (_)\n"
-                           "|\n"
-                           "|\n"
-                           "|\n"
-                           "|\n"
-                           "|_____";
-
-  const std::string body = "____\n"
-                           "|/  |\n"
-                           "|  (_)\n"
-                           "|   |\n"
-                           "|   |\n"
-                           "|\n"
-                           "|\n"
-                           "|_____";
-
-  const std::string left_arm = "____\n"
-                               "|/  |\n"
-                               "|  (_)\n"
-                               "|  \\|\n"
-                               "|   |\n"
-                               "|\n"
-                               "|\n"
-                               "|_____";
-
-  const std::string right_arm = "____\n"
-                                "|/  |\n"
-                                "|  (_)\n"
-                                "|  \\|/\n"
-                                "|   |\n"
-                                "|\n"
-                                "|\n"
-                                "|_____";
-
-  const std::string left_leg = "____\n"
-                               "|/  |\n"
-                               "|  (_)\n"
-                               "|  \\|/\n"
-                               "|   |\n"
-                               "|  /\n"
-                               "|\n"
-                               "|_____";
-
-  const std::string right_leg = "____\n"
-                                "|/  |\n"
-			        "|  (_)\n"
-			        "|  \\|/\n"
-                                "|   |\n"
-                                "|  / \\\n"
-                                "|\n"
-                                "|_____";
 }
