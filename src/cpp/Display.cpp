@@ -79,4 +79,4 @@ void Display::loss(const std::string& answer) {
   std::cout << "Good try! The word was: " << answer << "\n\n";
 }
 
-void Display::win() { std::cout << "Good job! You guessed the word!\n\n"; }
+void Display::win() { std::cout << "Good job! You saved the man!\n\n"; }
