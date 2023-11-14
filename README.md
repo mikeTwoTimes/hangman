@@ -24,7 +24,7 @@ the optimized usage	of std::vector,	and the	usage of small strings.
   less.
 
 - The std::vector in the 'Hangman' class will always reserve a capacity of 6, and
-  will	use 'emplace_back' to efficiently insert elements into the vector. With
+  will	use 'push_back' to efficiently insert elements into the vector. With
   these optimizations the vector will only allocate 6 bytes of memory and will
   never resize.
 
