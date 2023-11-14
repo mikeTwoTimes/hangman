@@ -19,12 +19,13 @@ the optimized usage	of std::vector,	and the	usage of small strings.
 
 - std::string has	an optimization	for small strings. The default capacity is 15
   (depending on the STL implementation it could be higher), so if a string is 15
-  characters or lower there will be no heap allocation.
+  characters or lower there will be no heap allocation. Therefore, the words in
+  'words.txt' have been filtered to be 15 characters or less.
 
-- The std::vector in the 'Hangman' class will always reserve a capacity of 6 in the
-  constructor, And will	use 'emplace_back' to efficiently insert elements into the
-  vector. These optimizations will reduce the number of memory allocations to one
-  per game.
+- The std::vector in the 'Hangman' class will always reserve a capacity of 6, and
+  will	use 'emplace_back' to efficiently insert elements into the vector. With
+  these optimizations the vector will only allocate 6 bytes of memory and will
+  never resize.
 
 # References
 
