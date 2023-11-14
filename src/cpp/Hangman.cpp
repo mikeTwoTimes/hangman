@@ -17,7 +17,7 @@ void Hangman::update_correct() {
   }
 }
 
-void Hangman::update_wrong() { this->m_wrong.emplace_back(this->m_guess); }
+void Hangman::update_wrong() { this->m_wrong.push_back(this->m_guess); }
 
 void Hangman::update_state() { (is_correct()) ? update_correct() : update_wrong(); }
 
