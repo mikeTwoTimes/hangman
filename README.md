@@ -17,10 +17,11 @@ pretty fun to mess around with especially if you're bored at work or class.
 The reason this	Hangman	implementation is blazingly fast is due	to two things,	
 the optimized usage	of std::vector,	and the	usage of small strings.	
 
-- std::string has	an optimization	for small strings. The default capacity is 15
-  (depending on the STL implementation it could be higher), so if a string is 15
-  characters or lower there will be no heap allocation. Therefore, the words in
-  'words.txt' have been filtered to be 15 characters or less.
+- std::string has	an optimization	for small strings. The default capacity of
+  a std::string is 15 (depending on the STL implementation it could be higher),
+  so if a string is 15 characters or lower there will be no heap allocation.
+  Therefore, the words in 'words.txt' have been filtered to be 15 characters or
+  less.
 
 - The std::vector in the 'Hangman' class will always reserve a capacity of 6, and
   will	use 'emplace_back' to efficiently insert elements into the vector. With
