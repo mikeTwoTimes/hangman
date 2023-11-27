@@ -15,7 +15,7 @@ namespace Drawing {
 
 namespace Display {
   void wipe_line(const int line_count);
-  void wipe_input();
+  void wipe_buffer(const std::size_t length);
 
   void print_correct(const std::string& correct);
   void print_wrong(const std::vector<char>& wrong);
