@@ -72,9 +72,14 @@ void Display::wipe_line(const int line_count) {
   }
 }
 
-void Display::wipe_input() {
-  std::cout << "\033[1A\r";
-  std::cout << "\033[K";
+void Display::wipe_buffer(const std::size_t length) {
+  std::cout << "\033[1A" << "\033[" << length << "D"; // Move cursor to start of buf
+
+  for (std::size_t i = 0; i < length; i++) {
+    std::cout << " "; // Clear all input
+  }
+
+  std::cout << "\033[" << length << "D"; // Reset cursor
 }
 
 void Display::print_correct(const std::string& correct) {
