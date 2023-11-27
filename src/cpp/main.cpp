@@ -29,14 +29,14 @@ int main() {
 
 std::string get_word(File_In& fin) {
   const int file_size = 682;
-  const int line = Random::get().Int(1, file_size); // Picks random line from the file
+  const int line = Random::get().Int(1, file_size);
   std::string word = " ";
 
   for (int i = 0; i < line; i++) {
-    fin.stream() >> word;  // Reads file until the line number
+    fin.stream() >> word;
   }
 
-  fin.stream().seekg(0, std::ios::beg); // Resets stream position to beginning of file
+  fin.stream().seekg(0, std::ios::beg);
 
   return word;
 }
