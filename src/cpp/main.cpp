@@ -1,5 +1,4 @@
 #include <cctype>
-#include <limits>
 #include "Display.h"
 #include "File_In.h"
 #include "Random.h"
@@ -29,8 +28,9 @@ int main() {
 }
 
 std::string get_word(File_In& fin) {
-  const int line = Random::get().Int(1, 682); // Picks a random line from the file
-  std::string word;
+  const int file_size = 682;
+  const int line = Random::get().Int(1, file_size); // Picks random line from the file
+  std::string word = " ";
 
   for (int i = 0; i < line; i++) {
     fin.stream() >> word;  // Reads file until the line number
@@ -42,44 +42,44 @@ std::string get_word(File_In& fin) {
 }
 
 char get_guess(const std::string& correct, const std::vector<char>& wrong) {
-  char guess = '0';
+  const int prompt_size = 16;
+  std::string guess = " ";
 
   do {
     std::cout << "Guess a letter: ";
-    std::cin.get(guess);   // .get() will read newline characters. 
-                           // did this so user couldnt break display.
-    if (guess != '\n') {
-      // Good grief
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      guess = std::toupper(guess);
-    }
+    std::getline(std::cin, guess);
     
-    if (!std::isalpha(guess) || in_list(correct, guess) || in_list(wrong, guess)) {
-      Display::wipe_input(); // Clears line if bad input
-    }
-  } while (!std::isalpha(guess) || in_list(correct, guess) || in_list(wrong, guess));
+    guess[0] = std::toupper(guess[0]);
 
-  return guess;
+    Display::wipe_buffer(guess.size() + prompt_size);
+  } while (!std::isalpha(guess[0]) || in_list(correct, guess[0]) ||
+	   in_list(wrong, guess[0]));
+
+  std::cout << "\n";
+
+  return guess[0];
 }
 
 char get_replay() {
-  char replay = '0';
+  const int prompt_size = 17;
+  std::string replay = " ";
 
   do {
     std::cout << "Play again? y/n: ";
-    std::cin.get(replay);
+    std::getline(std::cin, replay);
 
-    if (replay != '\n') {
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      replay = std::tolower(replay);
+    replay[0] = std::tolower(replay[0]);
+
+    if (replay[0] != 'n') {
+      Display::wipe_buffer(replay.size() + prompt_size);
     }
+  } while (replay[0] != 'n' && replay[0] != 'y');
 
-    if (replay != 'n' && replay != 'y') {
-      Display::wipe_input();
-    }
-  } while (replay != 'n' && replay != 'y');
-
-  return replay;
+  if (replay[0] != 'n') {
+    std::cout << "\n";
+  }
+  
+  return replay[0];
 }
 
 template<typename Char_List>
