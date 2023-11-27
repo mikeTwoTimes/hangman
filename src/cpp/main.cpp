@@ -52,8 +52,8 @@ char get_guess(const std::string& correct, const std::vector<char>& wrong) {
     guess[0] = std::toupper(guess[0]);
 
     Display::wipe_buffer(guess.size() + prompt_size);
-  } while (!std::isalpha(guess[0]) || in_list(correct, guess[0]) ||
-	   in_list(wrong, guess[0]));
+  } while (guess.size() != 1 || !std::isalpha(guess[0]) || 
+	   in_list(correct, guess[0]) || in_list(wrong, guess[0]));
 
   std::cout << "\n";
 
@@ -70,10 +70,10 @@ char get_replay() {
 
     replay[0] = std::tolower(replay[0]);
 
-    if (replay[0] != 'n') {
+    if (replay.size() != 1 || replay[0] != 'n') {
       Display::wipe_buffer(replay.size() + prompt_size);
     }
-  } while (replay[0] != 'n' && replay[0] != 'y');
+  } while (replay.size() != 1 || (replay[0] != 'n' && replay[0] != 'y'));
 
   if (replay[0] != 'n') {
     std::cout << "\n";
