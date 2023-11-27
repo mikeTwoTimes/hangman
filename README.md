@@ -2,13 +2,11 @@
 
 A blazingly fast Hangman game written in C++ for UNIX terminals.
 
-# Compilation
+# Compilation & Usage
 
-Enter 'make' in the cloned repo to generate the executable and object files.
-
-# Usage
-
-You will have to pass the "words.txt" file around with the executable, and your terminal  must have [ANSI escape code](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) support.
+Enter 'make' in the cloned repo to generate the executable and object files. You 
+will have to pass the "words.txt" file around with the executable, and your 
+terminal must have [ANSI escape code](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) support.
 
 # Blazingly Fast?
 
