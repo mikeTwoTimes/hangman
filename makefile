@@ -23,4 +23,4 @@ main.o: $(CPP)/main.cpp $(HEADERS)/Display.h $(HEADERS)/File_In.h $(HEADERS)/Ran
 	$(CXX) $(CXXFLAGS) -c $(CPP)/main.cpp -I$(HEADERS)/
 
 clean:
-	rm -f *.o Hangman
+	rm -f *.o $(TARGET)
