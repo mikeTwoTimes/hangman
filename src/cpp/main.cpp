@@ -5,7 +5,7 @@
 
 std::string get_word(File_In& fin);
 char get_guess(const std::string& correct, const std::vector<char>& wrong);
-char get_replay();
+bool get_replay();
 
 template<typename Char_List>
 bool in_list(const Char_List& list, const char input);
@@ -14,17 +14,17 @@ void play(File_In& fin);
 
 int main() {
   const int screen_size = 17;
-  char replay = 'y';
+  bool replay = true;
   File_In fin("words.txt");
 
-  while (replay == 'y') {
+  while (replay) {
     play(fin);
     replay = get_replay();
 
-    if (replay == 'y') {
-      Display::wipe_line(screen_size);
-    }
+    Display::wipe_line(screen_size);
   }
+
+  return 0;
 }
 
 std::string get_word(File_In& fin) {
@@ -60,7 +60,7 @@ char get_guess(const std::string& correct, const std::vector<char>& wrong) {
   return guess[0];
 }
 
-char get_replay() {
+bool get_replay() {
   const int prompt_size = 17;
   std::string replay = " ";
 
@@ -70,16 +70,12 @@ char get_replay() {
 
     replay[0] = std::tolower(replay[0]);
 
-    if (replay.size() != 1 || replay[0] != 'n') {
-      Display::wipe_buffer(replay.size() + prompt_size);
-    }
+    Display::wipe_buffer(replay.size() + prompt_size);
   } while (replay.size() != 1 || (replay[0] != 'n' && replay[0] != 'y'));
 
-  if (replay[0] != 'n') {
-    std::cout << "\n";
-  }
+  std::cout << "\n";
   
-  return replay[0];
+  return replay[0] == 'y';
 }
 
 template<typename Char_List>
