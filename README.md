@@ -2,14 +2,14 @@
 
 A blazingly fast Hangman game written in C++.
 
-# Compilation & Usage
+# Compilation
 
 Make sure you have your friendly neighborhood C++ compiler and double check to 
 make sure it supports up to C++ 17. A makefile has been provided for compilation.
 
 # Dependencies
 
-You will have to pass the "words.txt" file around with the executable, and your 
+The Hangman executable and "words.txt" must be in the same directory and your 
 terminal must have [ANSI escape code](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) support.
 
 # Blazingly Fast?
