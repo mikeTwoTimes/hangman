@@ -1,26 +1,25 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -O3
-HEADERS = src/h
-CPP = src/cpp
+SRC = src
 TARGET = Hangman
+
+all: $(TARGET)
+	rm -f *.o
 
 $(TARGET): Random.o File_In.o Hangman.o Display.o main.o
 	$(CXX) $(CXXFLAGS) -o $(TARGET) main.o Display.o Hangman.o File_In.o Random.o
 
-Random.o: $(CPP)/Random.cpp $(HEADERS)/Random.h
-	$(CXX) $(CXXFLAGS) -c $(CPP)/Random.cpp -I$(HEADERS)/
+Random.o: $(SRC)/Random.cpp $(SRC)/Random.h
+	$(CXX) $(CXXFLAGS) -c $(SRC)/Random.cpp
 
-File_In.o: $(CPP)/File_In.cpp $(HEADERS)/File_In.h
-	$(CXX) $(CXXFLAGS) -c $(CPP)/File_In.cpp -I$(HEADERS)/
+File_In.o: $(SRC)/File_In.cpp $(SRC)/File_In.h
+	$(CXX) $(CXXFLAGS) -c $(SRC)/File_In.cpp
 
-Hangman.o: $(CPP)/Hangman.cpp $(HEADERS)/Hangman.h
-	$(CXX) $(CXXFLAGS) -c $(CPP)/Hangman.cpp -I$(HEADERS)/
+Hangman.o: $(SRC)/Hangman.cpp $(SRC)/Hangman.h
+	$(CXX) $(CXXFLAGS) -c $(SRC)/Hangman.cpp
 
-Display.o: $(CPP)/Display.cpp $(HEADERS)/Display.h $(HEADERS)/Hangman.h
-	$(CXX) $(CXXFLAGS) -c $(CPP)/Display.cpp -I$(HEADERS)/
+Display.o: $(SRC)/Display.cpp $(SRC)/Display.h $(SRC)/Hangman.h
+	$(CXX) $(CXXFLAGS) -c $(SRC)/Display.cpp
 
-main.o: $(CPP)/main.cpp $(HEADERS)/Display.h $(HEADERS)/File_In.h $(HEADERS)/Random.h
-	$(CXX) $(CXXFLAGS) -c $(CPP)/main.cpp -I$(HEADERS)/
-
-clean:
-	rm -f *.o $(TARGET)
+main.o: $(SRC)/main.cpp $(SRC)/Display.h $(SRC)/File_In.h $(SRC)/Random.h
+	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp
