@@ -5,7 +5,7 @@ A blazingly fast Hangman game written in C++.
 # Compilation
 
 Make sure you have your friendly neighborhood C++ compiler and double check to 
-make sure it supports up to C++ 17. A makefile has been provided for compilation.
+make sure it supports up to C++ 17. A makefile has been provided for your convenience.
 
 # Dependencies
 
