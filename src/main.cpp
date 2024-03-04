@@ -8,7 +8,7 @@ std::string read_word(File_In& fin, const int file_size);
 char read_letter(const std::unordered_set<char>& history);
 bool play_again();
 
-void start_game(File_In& fin, const int file_size);
+void start_game(const std::string& word);
 void play(const char* file, const int file_size);
 
 int main() {
@@ -70,9 +70,9 @@ bool play_again() {
   return input[0] == 'y';
 }
 
-void start_game(File_In& fin, const int file_size) {
+void start_game(const std::string& word) {
   const int screen_size = 15;
-  Hangman game(read_word(fin, file_size));
+  Hangman game(word);
 
   Display::print_state(game);
 
@@ -96,7 +96,7 @@ void play(const char* file, const int file_size) {
   bool replay = true;
 
   while (replay) {
-    start_game(fin, file_size);
+    start_game(read_word(fin, file_size));
     replay = play_again();
 
     Display::wipe_line(screen_size);
