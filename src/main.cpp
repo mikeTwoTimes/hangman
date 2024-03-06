@@ -1,11 +1,12 @@
 #include <cctype>
+#include <algorithm>
 #include "Display.h"
 #include "File_In.h"
 #include "Random.h"
 
 std::string read_word(File_In& fin, const int file_size);
 
-char read_letter(const std::unordered_set<char>& history);
+std::string read_input();
 bool play_again();
 
 void start_game(const std::string& word);
@@ -33,41 +34,25 @@ std::string read_word(File_In& fin, const int file_size) {
   return word;
 }
 
-char read_letter(const std::unordered_set<char>& history) {
-  const int prompt_size = 16;
+std::string read_input() {
   std::string input = "";
-
-  do {
-    std::cout << "Guess a letter: ";
-    std::getline(std::cin, input);
-    
-    input[0] = std::toupper(input[0]);
-
-    Display::wipe_buffer(input.size() + prompt_size);
-  } while (input.size() != 1 || !std::isalpha(input[0]) ||
-	   history.count(input[0]));
-
-  std::cout << "\n";
-
-  return input[0];
+  std::cout << "Ghess a letter or a word: ";
+  std::cin >> input;
+  std::transform(input.begin(), input.end(), input.begin(), ::toupper);
+  return input;
 }
 
 bool play_again() {
-  const int prompt_size = 17;
-  std::string input = "";
-
+  std::string input;
   do {
     std::cout << "Play again? y/n: ";
-    std::getline(std::cin, input);
-
-    input[0] = std::tolower(input[0]);
-
-    Display::wipe_buffer(input.size() + prompt_size);
-  } while (input.size() != 1 || (input[0] != 'n' && input[0] != 'y'));
+    std::cin >> input;
+    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+  } while (input.size() != 1 || (input.at(0) != 'n' && input.at(0) != 'y'));
 
   std::cout << "\n";
   
-  return input[0] == 'y';
+  return input.at(0) == 'y';
 }
 
 void start_game(const std::string& word) {
@@ -77,7 +62,7 @@ void start_game(const std::string& word) {
   Display::print_state(game);
 
   while (!game.is_lost()) {
-    game.guess(read_letter(game.history()));
+    game.guess(read_input());
 
     Display::wipe_line(screen_size);
     Display::print_state(game);
@@ -91,7 +76,6 @@ void start_game(const std::string& word) {
 }
 
 void play(const char* file, const int file_size) {
-  const int screen_size = 17;
   File_In fin(file);
   bool replay = true;
 
@@ -103,7 +87,5 @@ void play(const char* file, const int file_size) {
   while (replay) {
     start_game(read_word(fin, file_size));
     replay = play_again();
-
-    Display::wipe_line(screen_size);
   }
 }

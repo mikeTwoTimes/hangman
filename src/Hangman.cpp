@@ -14,14 +14,21 @@ void Hangman::update_current(const char letter) {
   }
 }
 
-void Hangman::guess(const char letter) {
-  if (this->m_answers.count(letter)) {
-    this->update_current(letter);
+void Hangman::guess(const std::string input) {
+  if(input.size() > 1) {
+    if(input == this->m_target) {
+      this->m_current = this->m_target;
+    } else {
+      this->m_wrong++;
+    }
   } else {
-    this->m_wrong++;
+    if (this->m_answers.count(input.at(0))) {
+      this->update_current(input.at(0));
+    } else {
+      this->m_wrong++;
+    }
+    this->m_history.insert(input.at(0));
   }
-
-  this->m_history.insert(letter);
 }
 
 const std::string& Hangman::target() const { return this->m_target; }

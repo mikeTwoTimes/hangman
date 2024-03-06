@@ -6,7 +6,7 @@
 class Hangman {
 public:
   Hangman(const std::string& word);
-  void guess(const char letter);
+  void guess(const std::string input);
 
   const std::string& target() const;
   const std::string& current() const;
