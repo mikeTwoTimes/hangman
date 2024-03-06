@@ -28,7 +28,7 @@ std::string read_word(File_In& fin, const int file_size) {
     fin.stream() >> word;
   }
 
-  fin.stream().seekg(0, std::ios::beg);
+  fin.reset();
 
   return word;
 }
@@ -94,6 +94,11 @@ void play(const char* file, const int file_size) {
   const int screen_size = 17;
   File_In fin(file);
   bool replay = true;
+
+  if (fin.error()) {
+    std::cerr << "Error: '" << file << "' not found, exiting program.\n";
+    return;
+  }
 
   while (replay) {
     start_game(read_word(fin, file_size));
