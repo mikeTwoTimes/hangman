@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -O3
+CXXFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17 -O3 -march=native
 SRC = src
 TARGET = play
 
@@ -23,3 +23,6 @@ Display.o: $(SRC)/Display.cpp $(SRC)/Display.h $(SRC)/Hangman.h
 
 main.o: $(SRC)/main.cpp $(SRC)/Display.h $(SRC)/File_In.h $(SRC)/Random.h
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp
+
+clean:
+	rm -f $(TARGET)
